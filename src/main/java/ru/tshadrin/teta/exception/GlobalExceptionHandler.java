@@ -1,4 +1,4 @@
-package ru.tshadrin.teta.configuration;
+package ru.tshadrin.teta.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
