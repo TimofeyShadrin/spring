@@ -9,13 +9,22 @@ public class CoursesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "course_id")
-    private long courseId;
+    private Long courseId;
     @Basic
     @Column(name = "author")
     private String author;
     @Basic
     @Column(name = "title")
     private String title;
+
+    public CoursesEntity() {
+    }
+
+    public CoursesEntity(Long courseId, String author, String title) {
+        this.courseId = courseId;
+        this.author = author;
+        this.title = title;
+    }
 
     public long getCourseId() {
         return courseId;
@@ -46,7 +55,8 @@ public class CoursesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CoursesEntity that = (CoursesEntity) o;
-        return courseId == that.courseId && Objects.equals(author, that.author) && Objects.equals(title, that.title);
+        return Objects.equals(courseId, that.courseId) && Objects.equals(author, that.author) &&
+                Objects.equals(title, that.title);
     }
 
     @Override
