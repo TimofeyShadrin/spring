@@ -1,5 +1,7 @@
 package ru.tshadrin.teta.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 public class CourseDTO {
     private Long courseId;
     private String author;

@@ -1,8 +1,13 @@
 package ru.tshadrin.teta.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class CourseCreateDTO {
     private Long courseId;
+    @NotBlank(message = "Курс не может быть без автора")
     private String author;
+    @NotBlank(message = "Курс не может быть без названия")
     private String title;
 
     public CourseCreateDTO() {

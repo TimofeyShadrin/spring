@@ -9,6 +9,7 @@ import ru.tshadrin.teta.dto.CourseDTO;
 import ru.tshadrin.teta.mapper.CourseMapper;
 import ru.tshadrin.teta.service.CourseService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class CourseController {
     }
 
     @PostMapping("/course")
-    public ResponseEntity<CourseDTO> create (@RequestBody CourseCreateDTO dto) {
+    public ResponseEntity<CourseDTO> create (@Valid @RequestBody CourseCreateDTO dto) {
         CoursesEntity coursesEntity = courseService.create(courseMapper.toEntity(dto));
         return ResponseEntity.ok(courseMapper.toDto(coursesEntity));
     }
