@@ -23,4 +23,9 @@ public class CourseService {
     public Optional<CoursesEntity> findById(Long id) {
         return courseRepository.findById(id);
     }
+
+    @Transactional
+    public CoursesEntity create(CoursesEntity courses) {
+        return courseRepository.save(courses);
+    }
 }

@@ -26,7 +26,7 @@ public class CoursesEntity {
         this.title = title;
     }
 
-    public long getCourseId() {
+    public Long getCourseId() {
         return courseId;
     }
 

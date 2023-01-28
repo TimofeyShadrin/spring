@@ -1,14 +1,14 @@
 package ru.tshadrin.teta.dto;
 
-public class CourseDTO {
+public class CourseCreateDTO {
     private Long courseId;
     private String author;
     private String title;
 
-    public CourseDTO() {
+    public CourseCreateDTO() {
     }
 
-    public CourseDTO(Long courseId, String author, String title) {
+    public CourseCreateDTO(Long courseId, String author, String title) {
         this.courseId = courseId;
         this.author = author;
         this.title = title;

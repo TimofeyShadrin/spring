@@ -2,14 +2,15 @@ package ru.tshadrin.teta.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.tshadrin.teta.domain.CoursesEntity;
+import ru.tshadrin.teta.dto.CourseCreateDTO;
+import ru.tshadrin.teta.dto.CourseDTO;
+import ru.tshadrin.teta.mapper.CourseMapper;
 import ru.tshadrin.teta.service.CourseService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,14 +18,24 @@ import java.util.List;
 public class CourseController {
 
     private final CourseService courseService;
+    private final CourseMapper courseMapper;
 
     @GetMapping
-    public ResponseEntity<List> findAll() {
-        return ResponseEntity.ok(courseService.findAll());
+    public ResponseEntity<List<CourseDTO>> findAll() {
+        return ResponseEntity.ok(courseService.findAll()
+                .stream()
+                .map(courseMapper::toDto)
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CoursesEntity> findById(@PathVariable Long id) {
-        return ResponseEntity.of(courseService.findById(id));
+    public ResponseEntity<CourseDTO> findById(@PathVariable Long id) {
+        return ResponseEntity.of(courseService.findById(id).map(courseMapper::toDto));
+    }
+
+    @PostMapping("/course")
+    public ResponseEntity<CourseDTO> create (@RequestBody CourseCreateDTO dto) {
+        CoursesEntity coursesEntity = courseService.create(courseMapper.toEntity(dto));
+        return ResponseEntity.ok(courseMapper.toDto(coursesEntity));
     }
 }
