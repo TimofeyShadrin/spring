@@ -1,10 +1,12 @@
 package ru.tshadrin.teta.dto;
 
+import ru.tshadrin.teta.annotation.AuthorAllowed;
+
 import javax.validation.constraints.NotBlank;
 
 public class CourseCreateDTO {
     private Long courseId;
-    @NotBlank(message = "Курс не может быть без автора")
+    @AuthorAllowed(authors = {"Вася", "Петя"})
     private String author;
     @NotBlank(message = "Курс не может быть без названия")
     private String title;
