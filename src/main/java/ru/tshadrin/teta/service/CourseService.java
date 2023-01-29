@@ -28,4 +28,14 @@ public class CourseService {
     public CoursesEntity create(CoursesEntity courses) {
         return courseRepository.save(courses);
     }
+
+    @Transactional(readOnly = true)
+    public List<CoursesEntity> findByPrefix(String prefix) {
+        return courseRepository.findByTitleContainingIgnoreCase(prefix);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        courseRepository.deleteById(id);
+    }
 }

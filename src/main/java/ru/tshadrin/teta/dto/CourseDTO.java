@@ -1,6 +1,6 @@
 package ru.tshadrin.teta.dto;
 
-import javax.validation.constraints.NotEmpty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 public class CourseDTO {
     private Long courseId;
@@ -10,6 +10,7 @@ public class CourseDTO {
     public CourseDTO() {
     }
 
+    @JsonCreator
     public CourseDTO(Long courseId, String author, String title) {
         this.courseId = courseId;
         this.author = author;

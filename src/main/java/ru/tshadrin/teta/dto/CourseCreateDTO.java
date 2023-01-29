@@ -1,7 +1,6 @@
 package ru.tshadrin.teta.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 public class CourseCreateDTO {
     private Long courseId;

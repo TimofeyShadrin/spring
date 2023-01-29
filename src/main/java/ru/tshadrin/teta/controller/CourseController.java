@@ -41,8 +41,24 @@ public class CourseController {
 
     @PostMapping("/course")
     @ApiOperation("Создание нового курса")
-    public ResponseEntity<CourseDTO> create (@Valid @RequestBody CourseCreateDTO dto) {
+    public ResponseEntity<CourseDTO> create(@Valid @RequestBody CourseCreateDTO dto) {
         CoursesEntity coursesEntity = courseService.create(courseMapper.toEntity(dto));
         return ResponseEntity.ok(courseMapper.toDto(coursesEntity));
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<CourseDTO>> filter(@RequestParam(name = "prefix") String prefix) {
+        return ResponseEntity.ok(courseService.findByPrefix(prefix).stream()
+                .map(courseMapper::toDto)
+                .collect(Collectors.toList()));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<List<CourseDTO>> delete(@PathVariable Long id) {
+        courseService.delete(id);
+        return ResponseEntity.ok(courseService.findAll()
+                .stream()
+                .map(courseMapper::toDto)
+                .collect(Collectors.toList()));
     }
 }
