@@ -3,7 +3,9 @@ package ru.tshadrin.teta.dto;
 import ru.tshadrin.teta.annotation.AuthorAllowed;
 import ru.tshadrin.teta.utils.SelfValidated;
 
+import javax.validation.Payload;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class CourseCreateDTO extends SelfValidated {
     /**
@@ -12,10 +14,17 @@ public class CourseCreateDTO extends SelfValidated {
      */
     public interface AuthorGroup { }
     public interface TitleGroup { }
+
+    public interface Soft extends Payload { }
+    public interface Hard extends Payload { }
     private Long courseId;
-    @AuthorAllowed(authors = {"Вася", "Петя"})
+    /**
+     * Несколько аннотаций соединяются по лигики И
+     */
+    @AuthorAllowed(authors = {"Вася", "Петя"}, payload = Soft.class)
+    @Pattern(regexp = "^В.*$")
     private String author;
-    @NotBlank(message = "Курс не может быть без названия")
+    @NotBlank(message = "Курс не может быть без названия", payload = Hard.class)
     private String title;
 
     public CourseCreateDTO() {
