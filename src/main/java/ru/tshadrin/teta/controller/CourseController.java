@@ -37,7 +37,8 @@ public class CourseController {
     @GetMapping("/{id}")
     @ApiOperation("Получние данных курса по его ID")
     public ResponseEntity<CourseDTO> findById(@PathVariable Long id) {
-        return ResponseEntity.of(courseService.findById(id).map(courseMapper::toDto));
+        return ResponseEntity.of(courseService.findById(id)
+                .map(courseMapper::toDto));
     }
 
     @PostMapping("/course")
