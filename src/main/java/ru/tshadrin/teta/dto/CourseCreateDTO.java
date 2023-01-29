@@ -1,15 +1,21 @@
 package ru.tshadrin.teta.dto;
 
 import ru.tshadrin.teta.annotation.AuthorAllowed;
-import ru.tshadrin.teta.utils.SelfValidated;
 
 import javax.validation.constraints.NotBlank;
 
-public class CourseCreateDTO extends SelfValidated {
+public class CourseCreateDTO{
+    public interface AuthorGroup {
+
+    }
+
+    public interface TitleGroup {
+
+    }
     private Long courseId;
-    @AuthorAllowed(authors = {"Вася", "Петя"})
+    @AuthorAllowed(authors = {"Вася", "Петя"}, groups = AuthorGroup.class)
     private String author;
-    @NotBlank(message = "Курс не может быть без названия")
+    @NotBlank(message = "Курс не может быть без названия", groups = TitleGroup.class)
     private String title;
 
     public CourseCreateDTO() {
@@ -19,7 +25,6 @@ public class CourseCreateDTO extends SelfValidated {
         this.courseId = courseId;
         this.author = author;
         this.title = title;
-        validateSelf();
     }
 
     public Long getCourseId() {
