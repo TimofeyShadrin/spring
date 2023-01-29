@@ -21,10 +21,10 @@ public class CourseCreateDTO extends SelfValidated {
     /**
      * Несколько аннотаций соединяются по лигики И
      */
-    @AuthorAllowed(authors = {"Вася", "Петя", "Маша"})
-    @Pattern(regexp = "^В.*$")
+    @AuthorAllowed(authors = {"Вася", "Петя", "Маша"}, payload = Soft.class)
+    @Pattern(regexp = "^В.*$", message = "Имя автора должно начинаться с буквы 'В'")
     private String author;
-    @NotBlank(message = "Курс не может быть без названия")
+    @NotBlank(message = "Курс не может быть без названия", payload = Hard.class)
     private String title;
 
     public CourseCreateDTO() {
