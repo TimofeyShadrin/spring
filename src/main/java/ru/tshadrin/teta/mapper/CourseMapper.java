@@ -8,5 +8,6 @@ import ru.tshadrin.teta.dto.CourseDTO;
 @Mapper(componentModel = "spring")
 public interface CourseMapper {
     CourseDTO toDto(CoursesEntity courses);
-    CoursesEntity toEntity (CourseCreateDTO courseCreateDTO);
+
+    CoursesEntity toEntity(CourseCreateDTO courseCreateDTO);
 }
