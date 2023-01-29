@@ -19,6 +19,7 @@ public class CourseCreateDTO extends SelfValidated {
         this.courseId = courseId;
         this.author = author;
         this.title = title;
+        validateSelf();
     }
 
     public Long getCourseId() {
