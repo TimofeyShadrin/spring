@@ -1,10 +1,11 @@
 package ru.tshadrin.teta.dto;
 
 import ru.tshadrin.teta.annotation.AuthorAllowed;
+import ru.tshadrin.teta.utils.SelfValidated;
 
 import javax.validation.constraints.NotBlank;
 
-public class CourseCreateDTO {
+public class CourseCreateDTO extends SelfValidated {
     private Long courseId;
     @AuthorAllowed(authors = {"Вася", "Петя"})
     private String author;
