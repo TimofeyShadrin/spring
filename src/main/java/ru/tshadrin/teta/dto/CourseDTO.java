@@ -1,6 +1,7 @@
 package ru.tshadrin.teta.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CourseDTO {
     private Long courseId;
@@ -10,8 +11,15 @@ public class CourseDTO {
     public CourseDTO() {
     }
 
+    /**
+     * @JsonCreator = создание объекта принудительно через конструктор,
+     * не используя сеттеры
+     */
     @JsonCreator
-    public CourseDTO(Long courseId, String author, String title) {
+    public CourseDTO(
+            @JsonProperty("courseId") Long courseId,
+            @JsonProperty("author") String author,
+            @JsonProperty("title") String title) {
         this.courseId = courseId;
         this.author = author;
         this.title = title;
