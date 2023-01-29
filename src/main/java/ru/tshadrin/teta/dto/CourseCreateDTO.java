@@ -5,13 +5,12 @@ import ru.tshadrin.teta.annotation.AuthorAllowed;
 import javax.validation.constraints.NotBlank;
 
 public class CourseCreateDTO{
-    public interface AuthorGroup {
-
-    }
-
-    public interface TitleGroup {
-
-    }
+    /**
+     * Интерфейсы используются как маркеры для групп
+     * Никакую логику реализовывать не нужно
+     */
+    public interface AuthorGroup { }
+    public interface TitleGroup { }
     private Long courseId;
     @AuthorAllowed(authors = {"Вася", "Петя"}, groups = AuthorGroup.class)
     private String author;

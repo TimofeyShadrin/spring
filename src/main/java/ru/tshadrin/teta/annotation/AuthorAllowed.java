@@ -12,7 +12,7 @@ public @interface AuthorAllowed {
 
     /**
      * ${validatedValue} = значения указанные при заполнении клиентом
-     * {authors} = значение указанные в аннтоции как допустимые
+     * {authors} = значение указанные в аннотации как допустимые
      */
     String message() default "Автор не допустим ${validatedValue}. Можно: {authors}";
 
