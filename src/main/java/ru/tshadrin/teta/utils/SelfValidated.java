@@ -7,10 +7,14 @@ import javax.validation.Validator;
 import java.util.Set;
 
 public class SelfValidated {
-    public static final Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
+    public final Validator validator;
 
-    public final void validateSelf() {
-        final Set<ConstraintViolation<SelfValidated>> constraintViolations = VALIDATOR.validate(this);
+    public SelfValidated() {
+        validator = Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
+    public void validateSelf() {
+        Set<ConstraintViolation<SelfValidated>> constraintViolations = validator.validate(this);
         if (!constraintViolations.isEmpty()) {
             throw new ConstraintViolationException(constraintViolations);
         }
