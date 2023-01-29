@@ -25,7 +25,7 @@ class CourseCreateDTOTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
-            "Олег", "Николай", "Михаил"
+            "Олег", "Николай", "Михаил", "Маша"
     })
     void shouldThrowExceptionIfAuthorIsIncorrect(String author) {
         assertThrows(

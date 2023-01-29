@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.tshadrin.teta.domain.CoursesEntity;
 import ru.tshadrin.teta.dto.CourseCreateDTO;
@@ -43,7 +42,7 @@ public class CourseController {
 
     @PostMapping("/course")
     @ApiOperation("Создание нового курса")
-    public ResponseEntity<CourseDTO> create(@Validated(CourseCreateDTO.AuthorGroup.class) @Valid @RequestBody CourseCreateDTO dto) {
+    public ResponseEntity<CourseDTO> create(@Valid @RequestBody CourseCreateDTO dto) {
         CoursesEntity coursesEntity = courseService.create(courseMapper.toEntity(dto));
         return ResponseEntity.ok(courseMapper.toDto(coursesEntity));
     }
