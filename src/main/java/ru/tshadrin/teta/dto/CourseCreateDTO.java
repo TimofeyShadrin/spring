@@ -19,7 +19,7 @@ public class CourseCreateDTO extends SelfValidated {
     public interface Hard extends Payload { }
     private Long courseId;
     /**
-     * Несколько аннотаций соединяются по лигики И
+     * Несколько аннотаций соединяются по лигики 'И'
      */
     @AuthorAllowed(authors = {"Вася", "Петя", "Маша"}, payload = Soft.class)
     @Pattern(regexp = "^В.*$", message = "Имя автора должно начинаться с буквы 'В'")

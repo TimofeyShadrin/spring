@@ -1,9 +1,9 @@
 ### Создаем базу данных postgreSQL в докере командой:
 ```shell
-docker run --name products-db -p 5434:5432 -e POSTGRES_USER=products -e POSTGRES_PASSWORD=password123 postgres
+docker run --name courses-db -p 5434:5432 -e POSTGRES_USER=courses -e POSTGRES_PASSWORD=password123 postgres
 ```
-### Создаем схему products
+### Создаем схему courses
 ```sql
-create schema products;
-alter schema products owner to products;
+create schema courses;
+alter schema courses owner to courses;
 ```
