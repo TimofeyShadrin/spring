@@ -1,7 +1,9 @@
 package ru.tshadrin.teta.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses", schema = "courses", catalog = "courses")
@@ -17,13 +19,20 @@ public class CoursesEntity {
     @Column(name = "title")
     private String title;
 
+    @OneToMany(mappedBy = "coursesEntity", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<LessonsEntity> lessons;
+
+    @ManyToMany
+    private Set<PersonsEntity> persons;
+
     public CoursesEntity() {
     }
 
-    public CoursesEntity(Long courseId, String author, String title) {
-        this.courseId = courseId;
+    public CoursesEntity(String author, String title, List<LessonsEntity> lessons, Set<PersonsEntity> persons) {
         this.author = author;
         this.title = title;
+        this.lessons = lessons;
+        this.persons = persons;
     }
 
     public Long getCourseId() {
@@ -48,6 +57,22 @@ public class CoursesEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<LessonsEntity> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<LessonsEntity> lessons) {
+        this.lessons = lessons;
+    }
+
+    public Set<PersonsEntity> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(Set<PersonsEntity> persons) {
+        this.persons = persons;
     }
 
     @Override
