@@ -13,7 +13,7 @@ public class LessonsEntity {
     @Basic
     @Column(name = "title")
     private String title;
-    @Basic
+    @Lob
     @Column(name = "text")
     private String text;
 
