@@ -1,4 +1,4 @@
-package ru.tshadrin.teta.dto;
+package ru.tshadrin.teta.dto.course;
 
 import ru.tshadrin.teta.annotation.AuthorAllowed;
 import ru.tshadrin.teta.utils.SelfValidated;

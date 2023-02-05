@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.tshadrin.teta.domain.CoursesEntity;
-import ru.tshadrin.teta.dto.CourseCreateDTO;
-import ru.tshadrin.teta.dto.CourseDTO;
+import ru.tshadrin.teta.dto.course.CourseCreateDTO;
+import ru.tshadrin.teta.dto.course.CourseDTO;
 import ru.tshadrin.teta.mapper.CourseMapper;
 import ru.tshadrin.teta.service.CourseService;
 

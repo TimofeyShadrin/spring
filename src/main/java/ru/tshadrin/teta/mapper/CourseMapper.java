@@ -2,8 +2,8 @@ package ru.tshadrin.teta.mapper;
 
 import org.mapstruct.Mapper;
 import ru.tshadrin.teta.domain.CoursesEntity;
-import ru.tshadrin.teta.dto.CourseCreateDTO;
-import ru.tshadrin.teta.dto.CourseDTO;
+import ru.tshadrin.teta.dto.course.CourseCreateDTO;
+import ru.tshadrin.teta.dto.course.CourseDTO;
 
 @Mapper(componentModel = "spring")
 public interface CourseMapper {

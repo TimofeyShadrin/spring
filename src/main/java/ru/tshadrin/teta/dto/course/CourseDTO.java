@@ -1,4 +1,4 @@
-package ru.tshadrin.teta.dto;
+package ru.tshadrin.teta.dto.course;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

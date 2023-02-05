@@ -1,6 +1,6 @@
 package ru.tshadrin.teta.utils;
 
-import ru.tshadrin.teta.dto.CourseCreateDTO;
+import ru.tshadrin.teta.dto.course.CourseCreateDTO;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;

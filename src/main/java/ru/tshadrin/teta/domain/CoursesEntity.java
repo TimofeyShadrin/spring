@@ -35,6 +35,18 @@ public class CoursesEntity {
         this.persons = persons;
     }
 
+    public void addLesson(LessonsEntity lesson) {
+        lesson.setCoursesEntity(this);
+        this.lessons.add(lesson);
+    }
+
+    public void addPerson(PersonsEntity person) {
+        Set<CoursesEntity> coursesEntities = person.getCourses();
+        coursesEntities.add(this);
+        person.setCourses(coursesEntities);
+        this.persons.add(person);
+    }
+
     public Long getCourseId() {
         return courseId;
     }
