@@ -9,5 +9,6 @@
     <include file="/db/changelog/v1.01/create-lessons.xml"/>
     <include file="/db/changelog/v1.01/create-users.xml"/>
     <include file="/db/changelog/v1.01/create-roles.xml"/>
+    <include file="/db/changelog/v1.01/add_column_to_user.xml"/>
 
 </databaseChangeLog>

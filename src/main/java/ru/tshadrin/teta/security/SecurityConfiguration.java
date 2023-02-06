@@ -9,9 +9,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
+    private final UserAuthService userAuthService;
 
-    public SecurityConfiguration(PasswordEncoder passwordEncoder) {
+    public SecurityConfiguration(PasswordEncoder passwordEncoder, UserAuthService userAuthService) {
         this.passwordEncoder = passwordEncoder;
+        this.userAuthService = userAuthService;
     }
 
     @Override
@@ -24,5 +26,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password(passwordEncoder.encode("123"))
                 .roles("ADMIN");
+        auth.userDetailsService(userAuthService);
     }
 }

@@ -1,6 +1,9 @@
 package ru.tshadrin.teta.domain;
 
+import lombok.Builder;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,18 +18,22 @@ public class PersonsEntity {
     @Column(name = "username")
     private String username;
 
+    @Basic
+    @Column(name = "password")
+    private String password;
+
     @ManyToMany(mappedBy = "persons")
     private Set<CoursesEntity> courses;
 
     @ManyToMany
-    private Set<RolesEntity> roles;
+    private Set<RolesEntity> roles = new HashSet<>();
 
     public PersonsEntity() {
     }
 
-    public PersonsEntity(String username, Set<CoursesEntity> courses) {
+    public PersonsEntity(String username, String password) {
         this.username = username;
-        this.courses = courses;
+        this.password = password;
     }
 
     public long getPersonId() {
@@ -59,6 +66,18 @@ public class PersonsEntity {
 
     public void setRoles(Set<RolesEntity> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(RolesEntity rolesEntity) {
+        this.roles.add(rolesEntity);
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
