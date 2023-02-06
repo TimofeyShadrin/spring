@@ -1,9 +1,7 @@
 package ru.tshadrin.teta.domain;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "courses", schema = "courses", catalog = "courses")
@@ -35,16 +33,18 @@ public class CoursesEntity {
         this.persons = persons;
     }
 
-    public void addLesson(LessonsEntity lesson) {
-        lesson.setCoursesEntity(this);
-        this.lessons.add(lesson);
+    public void addLessonToCourse(LessonsEntity lesson) {
+        if (lessons == null) {
+            lessons = new ArrayList<>();
+        }
+        lessons.add(lesson);
     }
 
-    public void addPerson(PersonsEntity person) {
-        Set<CoursesEntity> coursesEntities = person.getCourses();
-        coursesEntities.add(this);
-        person.setCourses(coursesEntities);
-        this.persons.add(person);
+    public void addPersonToCourse(PersonsEntity person) {
+        if (persons == null) {
+            persons = new HashSet<>();
+        }
+        persons.add(person);
     }
 
     public Long getCourseId() {

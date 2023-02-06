@@ -1,6 +1,7 @@
 package ru.tshadrin.teta.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,6 +18,13 @@ public class RolesEntity {
 
     @ManyToMany(mappedBy = "roles")
     private Set<PersonsEntity> persons;
+
+    public void addPersonToRole(PersonsEntity personsEntity) {
+        if (persons == null) {
+            persons = new HashSet<>();
+        }
+        persons.add(personsEntity);
+    }
 
     public RolesEntity() {
     }

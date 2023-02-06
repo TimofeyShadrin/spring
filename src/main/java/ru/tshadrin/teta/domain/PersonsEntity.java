@@ -26,7 +26,7 @@ public class PersonsEntity {
     private Set<CoursesEntity> courses;
 
     @ManyToMany
-    private Set<RolesEntity> roles = new HashSet<>();
+    private Set<RolesEntity> roles;
 
     public PersonsEntity() {
     }
@@ -34,6 +34,20 @@ public class PersonsEntity {
     public PersonsEntity(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public void addRoleToPerson(RolesEntity rolesEntity) {
+        if (roles == null) {
+            roles = new HashSet<>();
+        }
+        roles.add(rolesEntity);
+    }
+
+    public void addCourseToPerson(CoursesEntity coursesEntity) {
+        if (courses == null) {
+            courses = new HashSet<>();
+        }
+        courses.add(coursesEntity);
     }
 
     public long getPersonId() {
