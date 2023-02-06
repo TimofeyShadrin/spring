@@ -18,6 +18,9 @@ public class PersonsEntity {
     @ManyToMany(mappedBy = "persons")
     private Set<CoursesEntity> courses;
 
+    @ManyToMany
+    private Set<RolesEntity> roles;
+
     public PersonsEntity() {
     }
 
@@ -48,6 +51,14 @@ public class PersonsEntity {
 
     public void setCourses(Set<CoursesEntity> courses) {
         this.courses = courses;
+    }
+
+    public Set<RolesEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RolesEntity> roles) {
+        this.roles = roles;
     }
 
     @Override
