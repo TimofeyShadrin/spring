@@ -7,7 +7,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    public void authConfigure(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
+
+    private final PasswordEncoder passwordEncoder;
+
+    public SecurityConfiguration(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("student")
                 .password(passwordEncoder.encode("123"))
@@ -17,5 +25,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .password(passwordEncoder.encode("123"))
                 .roles("ADMIN");
     }
-
 }
