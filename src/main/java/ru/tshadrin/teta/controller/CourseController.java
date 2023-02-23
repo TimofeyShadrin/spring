@@ -34,7 +34,7 @@ public class CourseController {
 
     @GetMapping
     @ApiOperation("Получение списка всех курсов")
-    @PreAuthorize("hasRole('ROLE_ADMIN') || hasRole('ROLE_EDITOR')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')") // "hasRole('ROLE_ADMIN') || hasRole('ROLE_EDITOR')"
     public ResponseEntity<List<CourseDTO>> findAll(HttpServletRequest request) {
         //authService.checkRole(request);
         return ResponseEntity.ok(courseService.findAll()

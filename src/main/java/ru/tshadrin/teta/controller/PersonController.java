@@ -38,12 +38,12 @@ public class PersonController {
         return ResponseEntity.ok(personRepository.save(personsEntity));
     }
 
-    @PostConstruct
-    @Transactional
+    //@PostConstruct
+    //@Transactional
     public void fillDB() {
-        RolesEntity rolesEntity = new RolesEntity("ROLE_ADMIN");
+        RolesEntity rolesEntity = new RolesEntity("ROLE_EDITOR");
         rolesRepository.save(rolesEntity);
-        PersonsEntity personsEntity = new PersonsEntity("test", passwordEncoder.encode("test"));
+        PersonsEntity personsEntity = new PersonsEntity("timon", passwordEncoder.encode("timon"));
         personsEntity.addRoleToPerson(rolesEntity);
         personRepository.save(personsEntity);
     }
