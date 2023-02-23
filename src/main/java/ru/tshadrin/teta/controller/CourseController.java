@@ -58,6 +58,7 @@ public class CourseController {
     }
 
     @GetMapping("/filter")
+    @PreAuthorize("@roleCheckService.canCallGetCourses(authentication)")
     public ResponseEntity<List<CourseDTO>> filter(@RequestParam(name = "prefix") String prefix) {
         return ResponseEntity.ok(courseService.findByPrefix(prefix).stream()
                 .map(courseMapper::toDto)
