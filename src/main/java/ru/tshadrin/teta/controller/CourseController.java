@@ -3,14 +3,20 @@ package ru.tshadrin.teta.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.tshadrin.teta.domain.CoursesEntity;
 import ru.tshadrin.teta.dto.course.CourseCreateDTO;
 import ru.tshadrin.teta.dto.course.CourseDTO;
+import ru.tshadrin.teta.exception.NotAuthorizedException;
 import ru.tshadrin.teta.mapper.CourseMapper;
+import ru.tshadrin.teta.repository.PersonRepository;
+import ru.tshadrin.teta.security.AuthService;
 import ru.tshadrin.teta.service.CourseService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,10 +29,14 @@ public class CourseController {
 
     private final CourseService courseService;
     private final CourseMapper courseMapper;
+    private final PersonRepository personRepository;
+    private final AuthService authService;
 
     @GetMapping
     @ApiOperation("Получение списка всех курсов")
-    public ResponseEntity<List<CourseDTO>> findAll() {
+    @PreAuthorize("hasRole('ROLE_ADMIN') || hasRole('ROLE_EDITOR')")
+    public ResponseEntity<List<CourseDTO>> findAll(HttpServletRequest request) {
+        //authService.checkRole(request);
         return ResponseEntity.ok(courseService.findAll()
                 .stream()
                 .map(courseMapper::toDto)
@@ -61,5 +71,10 @@ public class CourseController {
                 .stream()
                 .map(courseMapper::toDto)
                 .collect(Collectors.toList()));
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleNotAuthorizedException(NotAuthorizedException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 }

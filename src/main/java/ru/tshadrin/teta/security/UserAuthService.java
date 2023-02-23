@@ -11,7 +11,7 @@ import ru.tshadrin.teta.repository.PersonRepository;
 
 import java.util.stream.Collectors;
 
-@Service
+//@Service
 public class UserAuthService implements UserDetailsService {
     private final PersonRepository personRepository;
 

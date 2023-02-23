@@ -1,15 +1,19 @@
 package ru.tshadrin.teta.domain;
 
-import lombok.Builder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "persons", schema = "courses", catalog = "courses")
-public class PersonsEntity {
+public class PersonsEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "person_id")
@@ -27,6 +31,8 @@ public class PersonsEntity {
 
     @ManyToMany
     private Set<RolesEntity> roles;
+
+    String token;
 
     public PersonsEntity() {
     }
@@ -62,6 +68,26 @@ public class PersonsEntity {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -86,12 +112,29 @@ public class PersonsEntity {
         this.roles.add(rolesEntity);
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(rolesEntity -> {
+                    return new SimpleGrantedAuthority(rolesEntity.getName());
+                })
+                .collect(Collectors.toList());
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     @Override

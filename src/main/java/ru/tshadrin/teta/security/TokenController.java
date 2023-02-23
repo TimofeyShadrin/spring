@@ -26,8 +26,9 @@ public class TokenController {
         PersonsEntity personsEntity =
                 personRepository.findByUsernameAndPassword(username, password)
                 .stream().findFirst().orElseThrow(() -> new IllegalStateException("No user found"));
-        int randomToken = ThreadLocalRandom.current().nextInt();
-        String token = "username_" + randomToken;
-        return "";
+        int randomInt = ThreadLocalRandom.current().nextInt();
+        String token = "username_" + randomInt;
+        personsEntity.setToken(token);
+        return token;
     }
 }

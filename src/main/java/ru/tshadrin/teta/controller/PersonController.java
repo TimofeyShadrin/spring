@@ -43,7 +43,7 @@ public class PersonController {
     public void fillDB() {
         RolesEntity rolesEntity = new RolesEntity("ROLE_ADMIN");
         rolesRepository.save(rolesEntity);
-        PersonsEntity personsEntity = new PersonsEntity("timofei", passwordEncoder.encode("123"));
+        PersonsEntity personsEntity = new PersonsEntity("test", passwordEncoder.encode("test"));
         personsEntity.addRoleToPerson(rolesEntity);
         personRepository.save(personsEntity);
     }
